@@ -173,7 +173,7 @@ namespace Microsoft.VisualStudio.Services.Agent.Worker.Handlers
         {
             if(!System.Environment.Is64BitOperatingSystem)
             {
-                throw new PlatformNotSupportedException(System.Environment.Is64BitOperatingSystem);
+                throw new PlatformNotSupportedException(System.Environment.Is64BitOperatingSystem.ToString());
             }
 
             // Validate args.
