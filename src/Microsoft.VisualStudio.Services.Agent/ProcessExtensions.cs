@@ -24,11 +24,6 @@ namespace Microsoft.VisualStudio.Services.Agent
             Dictionary<string, string> environmentVariables = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             IntPtr processHandle = process.SafeHandle.DangerousGetHandle();
 
-            // only support 32/64 bits process runs on x64 OS.
-            if (!Environment.Is64BitOperatingSystem)
-            {
-                throw new PlatformNotSupportedException();
-            }
 
             PROCESS_BASIC_INFORMATION pbi = new PROCESS_BASIC_INFORMATION();
             int returnLength = 0;
@@ -38,23 +33,32 @@ namespace Microsoft.VisualStudio.Services.Agent
                 throw new Win32Exception(Marshal.GetLastWin32Error());
             }
 
-            bool wow64;
-            if (!IsWow64Process(processHandle, out wow64))
-            {
-                throw new Win32Exception(Marshal.GetLastWin32Error());
-            }
-
             IntPtr environmentBlockAddress;
-            if (!wow64)
+            if (Environment.Is64BitOperatingSystem)
             {
-                // 64 bits process
-                IntPtr UserProcessParameterAddress = ReadIntPtr64(processHandle, new IntPtr(pbi.PebBaseAddress) + 0x20);
-                environmentBlockAddress = ReadIntPtr64(processHandle, UserProcessParameterAddress + 0x80);
+                bool wow64;
+                if (!IsWow64Process(processHandle, out wow64))
+                {
+                    throw new Win32Exception(Marshal.GetLastWin32Error());
+                }
+
+                if (!wow64)
+                {
+                    // 64 bits process on 64 bits OS
+                    IntPtr UserProcessParameterAddress = ReadIntPtr64(processHandle, new IntPtr(pbi.PebBaseAddress) + 0x20);
+                    environmentBlockAddress = ReadIntPtr64(processHandle, UserProcessParameterAddress + 0x80);
+                }
+                else
+                {
+                    // 32 bits process on 64 bits OS
+                    IntPtr UserProcessParameterAddress = ReadIntPtr32(processHandle, new IntPtr(pbi.PebBaseAddress) + 0x1010);
+                    environmentBlockAddress = ReadIntPtr32(processHandle, UserProcessParameterAddress + 0x48);
+                }
             }
             else
             {
-                // 32 bits process
-                IntPtr UserProcessParameterAddress = ReadIntPtr32(processHandle, new IntPtr(pbi.PebBaseAddress) + 0x1010);
+                // 32 bits process on 32 bits OS
+                IntPtr UserProcessParameterAddress = ReadIntPtr32(processHandle, new IntPtr(pbi.PebBaseAddress) + 0x10);
                 environmentBlockAddress = ReadIntPtr32(processHandle, UserProcessParameterAddress + 0x48);
             }
 

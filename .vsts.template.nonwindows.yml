@@ -1,3 +1,6 @@
+parameters:
+  runtimeId: ''
+
 steps:
 
 # Clean
@@ -5,12 +8,12 @@ steps:
   clean: true
 
 # Build agent layout
-- script: ./dev.sh layout Release
+- script: format('./dev.sh layout Release {0}', parameters.runtimeId)
   workingDirectory: src
   displayName: Build & Layout Release
 
 # Run test
-- script: ./dev.sh test
+- script: format('./dev.sh test {0}', parameters.runtimeId)
   workingDirectory: src
   displayName: Test
 
