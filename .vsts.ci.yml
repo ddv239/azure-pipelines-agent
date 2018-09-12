@@ -49,7 +49,7 @@ phases:
   displayName: Windows Agent (x86)
   queue:
     name: buildDevs
-    demands: windows_x86
+    demands: 'Agent.OSArchitecture -eq X86'
   condition: eq(false, variables.skip_windows_x86)
   steps:
 
@@ -120,7 +120,7 @@ phases:
   displayName: Linux Agent (ARM)
   queue:
     name: buildDevs
-    demands: linux_arm
+    demands: 'Agent.OSArchitecture -eq ARM'
   condition: eq(false, variables.skip_linux_arm)
   steps:
 

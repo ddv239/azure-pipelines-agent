@@ -171,11 +171,6 @@ namespace Microsoft.VisualStudio.Services.Agent.Worker.Handlers
 
         public async Task RunAsync()
         {
-            if(!System.Environment.Is64BitOperatingSystem)
-            {
-                throw new PlatformNotSupportedException(System.Environment.Is64BitOperatingSystem.ToString());
-            }
-
             // Validate args.
             Trace.Entering();
             ArgUtil.NotNull(ExecutionContext, nameof(ExecutionContext));
@@ -267,7 +262,7 @@ namespace Microsoft.VisualStudio.Services.Agent.Worker.Handlers
                     processInvoker.OutputDataReceived -= OnDataReceived;
                     processInvoker.ErrorDataReceived -= OnDataReceived;
                 }
-            }
+            }     
         }
 
         protected virtual void AddLegacyHostEnvironmentVariables(string scriptFile, string workingDirectory)
