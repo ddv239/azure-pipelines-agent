@@ -11,18 +11,26 @@ Supported on Windows, OSX, Ubuntu and Red Hat.  Written for the .NET Core CLR as
 
 |   | Build & Test |
 |---|:-----:|
-|![Win](docs/res/win_med.png) **Windows**|[![Build & Test][win-build-badge]][win-build]| 
+|![Win-x64](docs/res/win_med.png) **Windows x64**|[![Build & Test][win-x64-build-badge]][win-x64-build]| 
+|![Win-x86](docs/res/win_med.png) **Windows x86**|[![Build & Test][win-x86-build-badge]][win-x86-build]| 
 |![macOS](docs/res/apple_med.png) **macOS**|[![Build & Test][macOS-build-badge]][macOS-build]| 
-|![Linux](docs/res/linux_med.png) **Linux**|[![Build & Test][linux-build-badge]][linux-build]|
+|![Linux-x64](docs/res/linux_med.png) **Linux x64**|[![Build & Test][linux-x64-build-badge]][linux-x64-build]|
+|![Linux-arm](docs/res/linux_med.png) **Linux ARM**|[![Build & Test][linux-arm-build-badge]][linux-arm-build]|
 
-[win-build-badge]: https://mseng.visualstudio.com/pipelinetools/_apis/build/status/VSTS.Agent.CI-Windows?branchName=master
-[win-build]: https://mseng.visualstudio.com/PipelineTools/_build?_a=completed&definitionId=6916
+[win-x64-build-badge]: https://mseng.visualstudio.com/pipelinetools/_apis/build/status/VSTS.Agent.CI-Windows?branchName=master
+[win-x64-build]: https://mseng.visualstudio.com/PipelineTools/_build?_a=completed&definitionId=6916
+
+[win-x86-build-badge]: https://mseng.visualstudio.com/pipelinetools/_apis/build/status/VSTS.Agent.CI-Windows?branchName=master
+[win-x86-build]: https://mseng.visualstudio.com/PipelineTools/_build?_a=completed&definitionId=7491
 
 [macOS-build-badge]: https://mseng.visualstudio.com/pipelinetools/_apis/build/status/VSTS.Agent.CI-MacOS?branchName=master
 [macOS-build]: https://mseng.visualstudio.com/PipelineTools/_build?_a=completed&definitionId=6917
 
-[linux-build-badge]: https://mseng.visualstudio.com/pipelinetools/_apis/build/status/VSTS.Agent.CI-Linux?branchName=master
-[linux-build]: https://mseng.visualstudio.com/PipelineTools/_build?_a=completed&definitionId=6915
+[linux-x64-build-badge]: https://mseng.visualstudio.com/pipelinetools/_apis/build/status/VSTS.Agent.CI-Linux?branchName=master
+[linux-x64-build]: https://mseng.visualstudio.com/PipelineTools/_build?_a=completed&definitionId=6915
+
+[linux-arm-build-badge]: https://mseng.visualstudio.com/pipelinetools/_apis/build/status/VSTS.Agent.CI-Linux?branchName=master
+[linux-arm-build]: https://mseng.visualstudio.com/PipelineTools/_build?_a=completed&definitionId=7490
 
 ## System Pre-Requisites
 
