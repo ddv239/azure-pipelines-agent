@@ -207,7 +207,7 @@ phases:
   displayName: Windows Agent (x86)
   queue:
     name: buildDevs
-    demands: 'Agent.OSArchitecture -eq X86'
+    demands: 'Agent.OSArchitecture -equals X86'
   steps:
 
   # Steps template for windows platform
@@ -432,7 +432,7 @@ phases:
   displayName: Linux Agent (ARM)
   queue:
     name: buildDevs
-    demands: 'Agent.OSArchitecture -eq ARM'
+    demands: 'Agent.OSArchitecture -equals ARM'
   steps:
 
   # Steps template for non-windows platform
