@@ -3,7 +3,7 @@ phases:
 ################################################################################
 - phase: build_windows_x64_agent
 ################################################################################
-  displayName: Windows x64 Agent
+  displayName: Windows Agent (x64)
   queue:
     name: Hosted VS2017
   condition: eq(false, variables.skip_windows_x64)
@@ -48,9 +48,10 @@ phases:
 ################################################################################
 - phase: build_windows_x86_agent
 ################################################################################
-  displayName: Windows x86 Agent
+  displayName: Windows Agent (x86)
   queue:
-    name: Hosted VS2017
+    name: buildDevs
+    demands: windows_x86
   condition: eq(false, variables.skip_windows_x86)
   steps:
 
@@ -93,7 +94,7 @@ phases:
 ################################################################################
 - phase: build_linux_x64_agent
 ################################################################################
-  displayName: Linux x64 Agent
+  displayName: Linux Agent (x64)
   queue:
     name: Hosted Linux Preview
   condition: eq(false, variables.skip_linux_x64)
@@ -122,7 +123,7 @@ phases:
 ################################################################################
 - phase: build_linux_arm_agent
 ################################################################################
-  displayName: Linux ARM Agent
+  displayName: Linux Agent (ARM)
   queue:
     name: Hosted Linux Preview
   condition: eq(false, variables.skip_linux_arm)
