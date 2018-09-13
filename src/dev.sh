@@ -8,7 +8,6 @@
 
 DEV_CMD=$1
 DEV_CONFIG=$2
-DEV_RUNTIME=$3
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LAYOUT_DIR="$SCRIPT_DIR/../_layout"
@@ -48,14 +47,6 @@ elif [[ "$CURRENT_PLATFORM" == 'darwin' ]]; then
    RUNTIME_ID='osx-x64'
 fi
 
-if [[ -z "$DEV_RUNTIME" ]]; then
-   DEV_RUNTIME="$DEV_CONFIG"
-fi
-
-if [[ ("$DEV_RUNTIME" == 'win-x86') || ("$DEV_RUNTIME" == 'win-x64') || ("$DEV_RUNTIME" == 'linux-x64') || ("$DEV_RUNTIME" == 'linux-arm') || ("$DEV_RUNTIME" == 'osx-x64') ]]; then
-    RUNTIME_ID="$DEV_CONFIG"
-fi
-
 # Make sure current platform support publish the dotnet runtime
 # Windows can publish win-x86/x64
 # Linux can publish linux-x64/arm
@@ -66,12 +57,12 @@ if [[ "$CURRENT_PLATFORM" == 'windows' ]]; then
       exit 1
    fi
 elif [[ "$CURRENT_PLATFORM" == 'linux' ]]; then
-   if [[ ("$RUNTIME_ID" != 'linux-x86') && ("$RUNTIME_ID" != 'linux-arm') ]]; then
+   if [[ ("$RUNTIME_ID" != 'linux-x64') && ("$RUNTIME_ID" != 'linux-arm') ]]; then
       echo "Failed: Can't build $RUNTIME_ID package $CURRENT_PLATFORM" >&2
       exit 1
    fi
 elif [[ "$CURRENT_PLATFORM" == 'darwin' ]]; then
-   if [[ ("$RUNTIME_ID" != 'osx-x86') ]]; then
+   if [[ ("$RUNTIME_ID" != 'osx-x64') ]]; then
       echo "Failed: Can't build $RUNTIME_ID package $CURRENT_PLATFORM" >&2
       exit 1
    fi
