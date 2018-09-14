@@ -108,6 +108,7 @@ function build ()
         dotnet msbuild /t:Build /p:PackageRuntime=${RUNTIME_ID} /p:BUILDCONFIG=${BUILD_CONFIG} || failed build
     fi    
 
+    mkdir -p ${LAYOUT_DIR}/bin/en-US
     grep --invert-match '^ *"CLI-WIDTH-' ./Misc/layoutbin/en-US/strings.json > ${LAYOUT_DIR}/bin/en-US/strings.json
 }
 
@@ -121,6 +122,7 @@ function layout ()
         dotnet msbuild /t:layout /p:PackageRuntime=${RUNTIME_ID} /p:BUILDCONFIG=${BUILD_CONFIG} || failed build
     fi
 
+    mkdir -p ${LAYOUT_DIR}/bin/en-US
     grep --invert-match '^ *"CLI-WIDTH-' ./Misc/layoutbin/en-US/strings.json > ${LAYOUT_DIR}/bin/en-US/strings.json
 
     #change execution flag to allow running with sudo

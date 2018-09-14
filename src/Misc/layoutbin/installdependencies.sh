@@ -36,7 +36,7 @@ then
         command -v apt
         if [ $? -eq 0 ]
         then
-            apt update && apt install -y liblttng-ust0 libkrb5-3 zlib1g
+            apt update && apt install -y liblttng-ust0 libcurl3 libkrb5-3 zlib1g
             if [ $? -ne 0 ]
             then
                 echo "'apt' failed with exit code '$?'"
@@ -66,7 +66,7 @@ then
             command -v apt-get
             if [ $? -eq 0 ]
             then
-                apt-get update && apt-get install -y liblttng-ust0 libkrb5-3 zlib1g
+                apt-get update && apt-get install -y liblttng-ust0 libcurl3 libkrb5-3 zlib1g
                 if [ $? -ne 0 ]
                 then
                     echo "'apt-get' failed with exit code '$?'"
@@ -145,7 +145,7 @@ then
                     fi
                 fi       
 
-                dnf install -y lttng-ust krb5-libs zlib libicu
+                dnf install -y lttng-ust libcurl krb5-libs zlib libicu
                 if [ $? -ne 0 ]
                 then
                     echo "'dnf' failed with exit code '$?'"
@@ -161,7 +161,7 @@ then
             command -v yum
             if [ $? -eq 0 ]
             then
-                yum install -y openssl-libs krb5-libs zlib libicu
+                yum install -y openssl-libs libcurl krb5-libs zlib libicu
                 if [ $? -ne 0 ]
                 then                    
                     echo "'yum' failed with exit code '$?'"
@@ -193,7 +193,7 @@ then
             command -v zypper
             if [ $? -eq 0 ]
             then
-                zypper -n install lttng-ust libopenssl1_0_0 krb5 zlib libicu52_1
+                zypper -n install lttng-ust libopenssl1_0_0 libcurl4 krb5 zlib libicu52_1
                 if [ $? -ne 0 ]
                 then
                     echo "'zypper' failed with exit code '$?'"

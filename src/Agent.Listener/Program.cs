@@ -12,6 +12,9 @@ namespace Microsoft.VisualStudio.Services.Agent.Listener
     {
         public static int Main(string[] args)
         {
+#if !OS_WINDOWS
+            AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", false);
+#endif
             using (HostContext context = new HostContext("Agent"))
             {
                 return MainAsync(context, args).GetAwaiter().GetResult();

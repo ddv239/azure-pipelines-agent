@@ -9,6 +9,9 @@ namespace Microsoft.VisualStudio.Services.Agent.Worker
     {
         public static int Main(string[] args)
         {
+#if !OS_WINDOWS
+            AppContext.SetSwitch("System.Net.Http.UseSocketsHttpHandler", false);
+#endif
             using (HostContext context = new HostContext("Worker"))
             {
                 return MainAsync(context, args).GetAwaiter().GetResult();
