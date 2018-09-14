@@ -455,7 +455,7 @@ phases:
 ################################################################################
 - phase: build_osx_agent
 ################################################################################
-  displayName: OSX Agent
+  displayName: macOS Agent (x64)
   queue:
     name: Hosted macOS Preview
   steps:

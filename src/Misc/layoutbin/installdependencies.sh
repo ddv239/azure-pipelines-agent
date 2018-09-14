@@ -183,6 +183,28 @@ then
                 exit 1
             fi
         fi
+    elif [ -e /etc/alpine-release ]
+        echo "The current OS is Alpine based"
+        echo "--------Alpine Version--------"
+        cat /etc/alpine-release
+        echo "------------------------------"
+
+        command -v apk
+        if [ $? -eq 0 ]
+        then
+            apk update && apk add lttng-ust openssl libcurl krb5 zlib icu
+            if [ $? -ne 0 ]
+            then
+                echo "'apk' failed with exit code '$?'"
+                print_errormessage
+                exit 1
+            fi
+        else
+            echo "Can not find 'apk'"
+            print_errormessage
+            exit 1
+        fi
+    then
     else
         # we might on OpenSUSE
         OSTYPE=$(grep ID_LIKE /etc/os-release | cut -f2 -d=)
